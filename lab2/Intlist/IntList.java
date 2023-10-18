@@ -82,7 +82,14 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList p = A;
+        if(p==null) return B;
+        while(p.rest!=null)
+        {
+            p = p.rest;
+        }
+        p.rest = B;
+        return A;
     }
 
     /**
@@ -91,9 +98,72 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+
+        IntList res;
+        IntList cur;
+        if(A!=null)
+        {
+            res = new IntList(A.first,null);
+            cur = res;
+            IntList p = A;
+            while(p.rest!=null)
+            {
+                p = p.rest;
+                cur.rest = new IntList(p.first,null);
+                cur = cur.rest;
+            }
+
+            if (B==null) {
+                return res;
+            }
+
+            else{
+                IntList q = B;
+                cur.rest = new IntList(q.first,null);
+                cur = cur.rest;
+                while(q.rest!=null)
+                {
+                    q = q.rest;
+                    cur.rest = new IntList(q.first,null);
+                    cur = cur.rest;
+                }
+                return res;
+            }
+        }
+
+        else{
+            if(B!=null) {
+                res = new IntList(B.first,null);
+                cur = res;
+                IntList p = B;
+                while(p.rest!=null)
+                {
+                    p = p.rest;
+                    cur.rest = new IntList(p.first,null);
+                    cur = cur.rest;
+                }
+                return res;
+            }
+
+            else{
+                return null;
+            }
+        }
     }
 
+    public static void main(String[] args){
+        //IntList b = IntList.of(0,1,2,3);
+        //IntList a = IntList.of(4,5,6);
+        IntList b = null;
+        IntList a = null;
+        a = IntList.dcatenate(a,b);
+        IntList p = a;
+        while(p!=null)
+        {
+            System.out.println(p.first);
+            p = p.rest;
+        }
+    }
 
 
 
