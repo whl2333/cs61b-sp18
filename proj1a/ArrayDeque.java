@@ -1,8 +1,8 @@
 public class ArrayDeque<unkowntype>{
     private unkowntype[] deque;
     private int size;
-    private int nextfirst;
-    private int nextlast;
+    public int nextfirst;
+    public int nextlast;
     private int MAXLEN=8;
     
     public ArrayDeque()
@@ -20,18 +20,21 @@ public class ArrayDeque<unkowntype>{
         }
         return false;
     }
+
     public void addFirst(unkowntype item)
     {
         if (isFull())
         {
-            unkowntype[] newdeque = (unkowntype[])new Object[MAXLEN+1];
-            for(int i=1;i<=size;i++)
+            unkowntype[] newdeque = (unkowntype[])new Object[MAXLEN*2];
+            for(int i=1;i<=size-nextfirst-1;i++)
             {
-                newdeque[(nextfirst+i)%(MAXLEN+1)] = deque[(nextfirst+i)%MAXLEN];
+                newdeque[(MAXLEN+nextfirst+i)%(2*MAXLEN)] = deque[(nextfirst+i)%MAXLEN];
             }
-            MAXLEN = MAXLEN+1;
-            nextlast = (nextfirst+size+1)%MAXLEN;
-            deque = null;
+            for(int i=0;i<=nextfirst;i++){
+                newdeque[i]=deque[i];
+            }
+            nextfirst = MAXLEN+nextfirst;
+            MAXLEN = MAXLEN*2;
             deque = newdeque;
         }
         deque[nextfirst] = item;
@@ -43,14 +46,17 @@ public class ArrayDeque<unkowntype>{
     {
         if (isFull())
         {
-            unkowntype[] newdeque = (unkowntype[])new Object[MAXLEN+1];
-            for(int i=1;i<=size;i++)
+            unkowntype[] newdeque = (unkowntype[])new Object[2*MAXLEN];
+
+            for(int i=0;i<=size-nextlast-1;i++)
             {
-                newdeque[(nextfirst+i)%(MAXLEN+1)] = deque[(nextfirst+i)%MAXLEN];
+                newdeque[(nextlast+MAXLEN+i)%(2*MAXLEN)] = deque[(nextlast+i)%MAXLEN];
             }
-            MAXLEN = MAXLEN+1;
-            nextlast = (nextfirst+size+1)%MAXLEN;
-            deque = null;
+            for(int i=0;i<nextlast;i++){
+                newdeque[i] = deque[i];
+            }
+            nextfirst = nextlast+MAXLEN-1;
+            MAXLEN = 2*MAXLEN;
             deque = newdeque;
         }
         deque[nextlast] = item;
@@ -60,7 +66,9 @@ public class ArrayDeque<unkowntype>{
 
     public boolean isEmpty()
     {
-        if (size == 0) return true;
+        if (size == 0) {
+            return true;
+        }
         return false;
     }
 
@@ -82,23 +90,28 @@ public class ArrayDeque<unkowntype>{
     {
         nextfirst = (nextfirst+1)%MAXLEN;
         size--;
+        return deque[nextfirst];
     }
 
     public unkowntype removeLast()
     {
         nextlast = (MAXLEN+nextlast-1)%MAXLEN;
         size--;
+        return deque[nextlast];
     }
 
     public unkowntype get(int index)
     {
         if (index<0||index>=size||size==0) return null;
+        unkowntype res = null;
         for(int i=1;i<=size;i++)
         {
             if(i==index+1)
             {
-                return deque[(nextfirst+i)%MAXLEN];
+                res = deque[(nextfirst+i)%MAXLEN];
+                break;
             }
         }
+        return res;
     }
 }
