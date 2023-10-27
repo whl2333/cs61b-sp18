@@ -11,7 +11,7 @@ public class ArrayDeque<T>{
     {
         deque = (T[])new Object[MAXLEN];
         nextfirst = 0;
-        nextlast = 0;
+        nextlast = 1;
         size = 0;
     }
     private boolean isFull()
