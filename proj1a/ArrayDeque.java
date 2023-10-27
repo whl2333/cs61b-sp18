@@ -96,11 +96,12 @@ public class ArrayDeque<T>{
 
     public T removeFirst()
     {
-        if (isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         nextfirst = (nextfirst+1)%MAXLEN;
         size--;
+        deque[nextfirst]=null;
         return deque[nextfirst];
     }
 
@@ -110,6 +111,7 @@ public class ArrayDeque<T>{
             return null;
         }
         nextlast = (MAXLEN+nextlast-1)%MAXLEN;
+        deque[nextlast]=null;
         size--;
         return deque[nextlast];
     }
