@@ -7,6 +7,6 @@ public class ArrayDequeTest {
         array.get(0);
         array.get(1);
         array.removeFirst();
-        array.PrintDeque();
+        array.printDeque();
     }
 }

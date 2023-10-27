@@ -1,8 +1,10 @@
+import javax.swing.*;
+
 public class ArrayDeque<T>{
     private T[] deque;
     private int size;
-    public int nextfirst;
-    public int nextlast;
+    private int nextfirst;
+    private int nextlast;
     private int MAXLEN=8;
     
     public ArrayDeque()
@@ -77,7 +79,7 @@ public class ArrayDeque<T>{
         return size;
     }
 
-    public void PrintDeque()
+    public void printDeque()
     {
         for(int i=1;i<=size;i++)
         {
@@ -120,7 +122,12 @@ public class ArrayDeque<T>{
         {
             if(i==index+1)
             {
-                res = deque[(nextlast-1)%MAXLEN];
+                if (deque[nextfirst]==null) {
+                    res = deque[(nextfirst + i) % MAXLEN];
+                }
+                else{
+                    res = deque[(nextfirst + i - 1)%MAXLEN];
+                }
                 break;
             }
         }

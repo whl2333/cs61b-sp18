@@ -106,16 +106,4 @@ public class LinkedListDeque<T> {
         }
         return p.val;
     }
-
-    public T getRecursive(int index,LinkedList head)
-    {
-        if (index<0||index>this.size()-1||this.isEmpty()) {
-            return null;
-        }
-        if (index == 0)
-        {
-            return head.val;
-        }
-        return getRecursive(index-1,head.next);
-    }
 }
