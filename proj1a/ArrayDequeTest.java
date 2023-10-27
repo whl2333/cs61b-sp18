@@ -2,14 +2,11 @@ public class ArrayDequeTest {
     public static void main(String[] args)
     {
         ArrayDeque<Integer> array = new ArrayDeque<>();
-        System.out.println(array.nextfirst);
-        System.out.println(array.nextlast);
-        for(int i=0;i<10;i++)
-        {
-            array.addLast(i);
-        }
-        System.out.println(array.nextfirst);
-        System.out.println(array.nextlast);
+        array.addLast(0);
+        array.addLast(1);
+        array.get(0);
+        array.get(1);
+        array.removeFirst();
         array.PrintDeque();
     }
 }

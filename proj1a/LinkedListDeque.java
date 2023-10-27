@@ -1,10 +1,10 @@
-public class LinkedListDeque<unkowntype> {
+public class LinkedListDeque<T> {
 
     public class LinkedList{
-        public unkowntype val;
+        public T val;
         public LinkedList prev;
         public LinkedList next;
-        public LinkedList(unkowntype val, LinkedList prev, LinkedList next)
+        public LinkedList(T val, LinkedList prev, LinkedList next)
         {
             this.val = val;
             this.prev = prev;
@@ -24,18 +24,18 @@ public class LinkedListDeque<unkowntype> {
         size = 0;
     }
 
-    public void addFirst(unkowntype T){
+    public void addFirst(T item){
         LinkedList curhead = sentinelfront.next;
-        LinkedList newhead = new LinkedList(T,sentinelfront,curhead);
+        LinkedList newhead = new LinkedList(item,sentinelfront,curhead);
         curhead.prev = newhead;
         sentinelfront.next = newhead;
         size++;
     }
 
-    public void addLast(unkowntype T)
+    public void addLast(T item)
     {
         LinkedList curtail = sentinelrear.prev;
-        LinkedList newtail = new LinkedList(T,curtail,sentinelrear);
+        LinkedList newtail = new LinkedList(item,curtail,sentinelrear);
         sentinelrear.prev = newtail;
         curtail.next = newtail;
         size++;
@@ -64,7 +64,7 @@ public class LinkedListDeque<unkowntype> {
         }
     }
 
-    public unkowntype removeFirst()
+    public T removeFirst()
     {
         if (this.isEmpty())
         {
@@ -75,28 +75,28 @@ public class LinkedListDeque<unkowntype> {
             LinkedList newhead = sentinelfront.next.next;
             newhead.prev = sentinelfront;
             sentinelfront.next = newhead;
-            unkowntype result = curhead.val;
+            T result = curhead.val;
             curhead = null;
             size--;
             return result;
         }
     }
 
-    public unkowntype removeLast(){
+    public T removeLast(){
         if(this.isEmpty()) return null;
         else{
             LinkedList curtail = sentinelrear.prev;
             LinkedList newtail = sentinelrear.prev.prev;
             newtail.next = sentinelrear;
             sentinelrear.prev = newtail;
-            unkowntype result = curtail.val;
+            T result = curtail.val;
             curtail = null; //回收内存
             size--;
             return result;
         }
     }
 
-    public unkowntype get(int index){
+    public T get(int index){
         if (this.isEmpty() || index<0 ||index>this.size()-1) return null;
         LinkedList p = sentinelfront.next;
         while(index!=0)
@@ -107,7 +107,7 @@ public class LinkedListDeque<unkowntype> {
         return p.val;
     }
 
-    public unkowntype getRecursive(int index,LinkedList head)
+    public T getRecursive(int index,LinkedList head)
     {
         if (index<0||index>this.size()-1||this.isEmpty()) {
             return null;
