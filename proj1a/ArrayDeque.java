@@ -124,12 +124,7 @@ public class ArrayDeque<T>{
         {
             if(i==index+1)
             {
-                if (deque[nextfirst]==null) {
-                    res = deque[(nextfirst + i) % MAXLEN];
-                }
-                else{
-                    res = deque[(nextfirst + i - 1)%MAXLEN];
-                }
+                res = deque[(nextfirst + i) % MAXLEN];
                 break;
             }
         }
