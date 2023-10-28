@@ -100,9 +100,10 @@ public class ArrayDeque<T>{
             return null;
         }
         nextfirst = (nextfirst+1)%MAXLEN;
+        T res = deque[nextfirst];
         size--;
         deque[nextfirst]=null;
-        return deque[nextfirst];
+        return res;
     }
 
     public T removeLast()
@@ -111,9 +112,10 @@ public class ArrayDeque<T>{
             return null;
         }
         nextlast = (MAXLEN+nextlast-1)%MAXLEN;
+        T res = deque[nextlast];
         deque[nextlast]=null;
         size--;
-        return deque[nextlast];
+        return res;
     }
 
     public T get(int index)
