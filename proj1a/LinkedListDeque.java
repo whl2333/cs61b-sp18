@@ -106,4 +106,23 @@ public class LinkedListDeque<T> {
         }
         return p.val;
     }
+
+    /**To help getRecursive works*/
+    private T getTargetNode(LinkedList cur,int index)
+    {
+        if (index<0||index>this.size()-1||this.isEmpty()) {
+            return null;
+        }
+        if (index==0)
+        {
+            return cur.val;
+        }
+        return getTargetNode(cur.next,index-1);
+    }
+
+    /**Recursive implementation of get(index) operation*/
+    public T getRecursive(int index)
+    {
+        return getTargetNode(this.sentinelfront.next,index);
+    }
 }
