@@ -30,7 +30,7 @@ public class Palindrome {
 //        return true;
 //    }
 
-    public static boolean isEqual(int i, int j, String word) {
+    private static boolean isEqual(int i, int j, String word) {
         if (j<=i)
             return true;
         if (word.charAt(i) == word.charAt(j)) {
@@ -46,7 +46,7 @@ public class Palindrome {
     public boolean isPalindrome(String word, CharacterComparator cc) {
 
         Deque<Character> deque = wordToDeque(word);
-        while(!deque.isEmpty() && deque.size()!=1) {
+        while(!deque.isEmpty() && deque.size() != 1) {
             if (!cc.equalChars(deque.removeFirst(), deque.removeLast()))
                 return false;
         }

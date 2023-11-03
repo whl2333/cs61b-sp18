@@ -5,8 +5,8 @@ public class OffByN implements CharacterComparator{
     }
     @Override
     public boolean equalChars(char x, char y) {
-        int diff = x-y;
-        if (diff==N || diff==-N)
+        int diff = x - y;
+        if (diff == N || diff == -N)
             return true;
         return false;
     }
