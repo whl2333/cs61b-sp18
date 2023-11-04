@@ -34,21 +34,21 @@ public class TestPalindrome {
     public void testOffByOneIsPalindrome() {
         CharacterComparator cc = new OffByOne();
         String word1 = "b";
-        assertTrue(palindrome.isPalindrome(word1,cc));
+        assertTrue(palindrome.isPalindrome(word1, cc));
 
         String word2 = "bdca";
-        assertTrue(palindrome.isPalindrome(word2,cc));
+        assertTrue(palindrome.isPalindrome(word2, cc));
 
         String word3 = "bdfca";
-        assertTrue(palindrome.isPalindrome(word3,cc));
+        assertTrue(palindrome.isPalindrome(word3, cc));
 
         String word4 = "bafca";
-        assertFalse(palindrome.isPalindrome(word4,cc));
+        assertFalse(palindrome.isPalindrome(word4, cc));
     }
     @Test
     public void testOffByNPalindrome() {
         CharacterComparator cc = new OffByN(3);
         String test1 = "abfed";
-        assertTrue(palindrome.isPalindrome(test1,cc));
+        assertTrue(palindrome.isPalindrome(test1, cc));
     }
 }
